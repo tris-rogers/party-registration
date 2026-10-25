@@ -8,7 +8,9 @@ interface PartyRegistrationProps {
 export default function PartyRegistration({children}: PartyRegistrationProps) {
     return (
             <div className="party-registration-form-wrapper">
-                {children}
+                <div className="party-registration-form">
+                    {children}
+                </div>
             </div>
     )
 }

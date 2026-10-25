@@ -1,21 +1,39 @@
 .party-fields-wrapper {
     padding: 1rem;
-    background-color: var(--light-color);
+    background-color: var(--secondary-light-color);
     color: var(--dark-color);
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 
     .label-wrapper {
         margin: 1rem 0;
+        
         label {
 
             .label-text {
                 margin-bottom: 10px;
                 font-weight: bold;
+
+                .label-required {
+                    color: var(--error-color);
+                }
             }
 
             .error-message {
                 text-align: center;
                 color: var(--error-color);
                 font-weight: bold;
+            }
+        }
+    }
+
+    .submit-btn-wrapper {
+        display: flex;
+
+        button {
+            margin-left: auto;
+            .btn-icon {
+                margin-right: 8px;
             }
         }
     }

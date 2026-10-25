@@ -33,7 +33,7 @@
         .btn-slider {
             position: absolute;
             height: 6px;
-            border-radius: 5px;
+            border-radius: var(--border-radius);
             background-color: var(--secondary-bg-color);
             bottom: 5px;
             left: 1rem;

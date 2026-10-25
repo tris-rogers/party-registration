@@ -25,6 +25,6 @@
             background-color: var(--secondary-bg-color);
             box-shadow: var(--dark-box-shadow);
             padding: 1rem;
-            border-radius: 5px;
+            border-radius: var(--border-radius);
         }
     }

@@ -5,25 +5,27 @@ import "../inputs.styles.css";
 interface TextFieldProps {
     name: keyof PartyFormFields;
     value: string;
+    placeholder?: string;
     onChange: (e: ChangeEvent<HTMLInputElement>)=>void;
     isValid: boolean;
     errorMsg?: string;
     maxLength?: number;
 }
 
-export default function TextField({name, value, onChange, isValid, errorMsg, maxLength}: TextFieldProps) {
+export default function TextField({name, value, placeholder, onChange, isValid, errorMsg, maxLength}: TextFieldProps) {
     const [canShowError, setCanShowError] = useState(false);
     const hasError = !isValid && canShowError;
     return (
         <>
             <input
                 name={name}
+                value={value} 
+                placeholder={placeholder}
+                onChange={onChange}
+                maxLength={maxLength}
                 onBlur={()=>setCanShowError(true)}
                 className={`input-field text-field ${(hasError) ? "invalid" : ""}`}
                 type="text" 
-                value={value} 
-                onChange={onChange}
-                maxLength={maxLength}
             />
             {
                 hasError && !!errorMsg &&

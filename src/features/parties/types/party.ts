@@ -23,6 +23,7 @@ export type PartyFieldInfo = {
   validationMessage?: string;
   partyType: PartyType[];
   maxLength?: number;
+  placeholder?: string;
 }
 
 export interface PartyTypes {

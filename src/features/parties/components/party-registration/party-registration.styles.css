@@ -2,4 +2,12 @@
     padding: 3rem 1rem;
     background-color: var(--secondary-bg-color);
     min-height: 50vh;
+    display: flex;
+    justify-content: center;
+
+    .party-registration-form {
+        width: 100%;
+        max-width: 600px;
+        box-shadow: var(--dark-box-shadow);
+    }
 }

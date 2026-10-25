@@ -7,7 +7,8 @@ export const PARTY_TYPE_FIELDS: PartyFieldInfo[] = [
             type: "email",
             validationMessage: "Please enter a valid email address.",
             partyType: ["Natural Person", "Legal Entity"],
-            maxLength: 254
+            maxLength: 254,
+            placeholder: "e.g. example@example.com"
         }, 
         {
             id: "postcode",
@@ -15,13 +16,15 @@ export const PARTY_TYPE_FIELDS: PartyFieldInfo[] = [
             type: "postcode",
             validationMessage: "Please enter a valid UK postcode.",
             partyType: ["Natural Person", "Legal Entity"],
-            maxLength: 7
+            maxLength: 7,
+            placeholder: "e.g. SW1A1AA"
         }, 
         {
             id: "fullName",
             name: "Full Name",
             validationMessage: "Please enter a name.",
-            partyType: ["Natural Person"]
+            partyType: ["Natural Person"],
+            placeholder: "Please enter.."
         }, 
         {
             id: "dateOfBirth",
@@ -35,12 +38,14 @@ export const PARTY_TYPE_FIELDS: PartyFieldInfo[] = [
             name: "Registered Name",
             validationMessage: "Registered name cannot be empty.",
             partyType: ["Legal Entity"],
-            maxLength: 160
+            maxLength: 160,
+            placeholder: "Please enter.."
         }, 
         {
             id: "companyRegistrationNumber",
             name: "Company Registration Number",
-            validationMessage: "Please provide a Company Registration Number",
-            partyType: ["Legal Entity"]
+            validationMessage: "Please provide a Company Registration Number.",
+            partyType: ["Legal Entity"],
+            placeholder: "Please enter.."
         }
     ];

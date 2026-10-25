@@ -1,8 +1,8 @@
 import { useState } from "react";
 import type { PartyType } from "../../types/party";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./large-party-type-selector.styles.css";
 import { PARTY_TYPES } from "../../config/party-types.config";
+import "./large-party-type-selector.styles.css";
 
 interface LargePartyTypeSelectorProps {
     hasPartyType: boolean;
@@ -29,28 +29,30 @@ export default function LargePartyTypeSelector({hasPartyType, setPartyType}: Lar
             onTransitionEnd={handleTransitionEnd}
             inert={hasPartyType}
         >
-            <h1 className="party-type-heading">
-                What type of <span className="accent-word">Party</span> would you like to register?
-            </h1>
+            <div className="large-party-type-selector">
+                <h1 className="party-type-heading">
+                    What type of <span className="accent-word">Party</span> would you like to register?
+                </h1>
 
-            {
-                PARTY_TYPES.map(p => {
-                    const {id, name, icon} = p;
-                    return (
-                        <button 
-                            key={id}
-                            className="select-party-type-button"
-                            onClick={()=>setPartyType(id)}
-                        >
-                            <div className="btn-text">{name}</div>
-                            <FontAwesomeIcon 
-                                className="btn-icon" 
-                                icon={icon} 
-                            />
-                        </button>
-                    )
-                })
-            }
+                {
+                    PARTY_TYPES.map(p => {
+                        const {id, name, icon} = p;
+                        return (
+                            <button 
+                                key={id}
+                                className="select-party-type-button"
+                                onClick={()=>setPartyType(id)}
+                            >
+                                <div className="btn-text">{name}</div>
+                                <FontAwesomeIcon 
+                                    className="btn-icon" 
+                                    icon={icon} 
+                                />
+                            </button>
+                        )
+                    })
+                }
+            </div>
         </div>
     )
 }

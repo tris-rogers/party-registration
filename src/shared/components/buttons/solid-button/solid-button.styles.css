@@ -1,0 +1,27 @@
+.solid-button {
+    background-color: var(--secondary-bg-color);
+    color: var(--light-color);
+    padding: .6rem 1rem;
+    border: 0;
+    outline: 0;
+    border-radius: var(--border-radius);
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 300ms ease-in, box-shadow 300ms ease-in;
+
+    &:focus, &:hover {
+        box-shadow: var(--accent-box-shadow);
+
+        &:hover {
+            background-color: var(--primary-bg-color);
+        }
+    }
+
+    &:disabled {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+}

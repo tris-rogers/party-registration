@@ -1,10 +1,13 @@
-import type { ChangeEvent, Dispatch, SetStateAction } from "react";
+import type { Dispatch, SetStateAction } from "react";
 import TextField from "../../../../shared/components/inputs/text-field/text-field";
 import { PARTY_TYPE_FIELDS } from "../../config/party-type-fields.config";
 import type { PartyFormFields, PartyType } from "../../types/party"
-import { isValidDateOfBirth, isValidEmail, isValidPostcode } from "../../../../shared/utils/validation";
-import "./party-fields.styles.css";
 import DateField from "../../../../shared/components/inputs/date-field/date-field";
+import SolidButton from "../../../../shared/components/buttons/solid-button/solid-button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import "./party-fields.styles.css";
+import { usePartyFormValidation } from "../../hooks/use-party-form-validation";
 
 interface PartyFieldsProps {
     partyType: PartyType;
@@ -13,31 +16,30 @@ interface PartyFieldsProps {
 }
 
 export default function PartyFields({partyType, partyFields, setPartyFields}: PartyFieldsProps) {
+    const relevantFields = PARTY_TYPE_FIELDS.filter(p => p.partyType.includes(partyType));
+    const {isSubmitDisabled, isFieldValueValid} = usePartyFormValidation(relevantFields, partyFields);
+
     return (
         <div className={"party-fields-wrapper"}>
-            <form>
+            <form onSubmit={(e) => e.preventDefault()}>
                 {
-                    PARTY_TYPE_FIELDS.filter(p => p.partyType.includes(partyType)).map(f => {
-                        const {id, name, type, validationMessage, maxLength} = f;
+                    relevantFields.map(f => {
+                        const {id, name, type, validationMessage, maxLength, placeholder} = f;
                         let value = partyFields[id];
-                        let isValid = !!value;
+                        const isValid = isFieldValueValid(value, type);
 
                         if (type === "email") {
                             value = value.replaceAll(" ", "");
-                            isValid = isValidEmail(value);
                         }
                         if (type === "postcode") {
                             value = value.replaceAll(" ", "");
-                            isValid = isValidPostcode(value);
+                            value = value.toUpperCase();
                         }
-                        if (type === "dateOfBirth") {
-                            isValid = isValidDateOfBirth(value);
-                        }
-                        
+                         
                         return (
                             <div key={id} className="label-wrapper">
                                 <label>
-                                    <div className="label-text">{name}</div>
+                                    <div className="label-text">{name} <span className="label-required">*</span></div>
                                     {
                                         type === "dateOfBirth" ?
                                             <DateField
@@ -53,7 +55,8 @@ export default function PartyFields({partyType, partyFields, setPartyFields}: Pa
                                             :
                                             <TextField 
                                                 name={id} 
-                                                value={value} 
+                                                value={value}
+                                                placeholder={placeholder} 
                                                 onChange={(e)=>setPartyFields(prev => ({
                                                     ...prev,
                                                     [id]: e.target.value
@@ -68,7 +71,11 @@ export default function PartyFields({partyType, partyFields, setPartyFields}: Pa
                         )
                     })
                 }
-                <button type="submit">Submit</button>
+                <div className="submit-btn-wrapper">
+                    <SolidButton type="submit" disabled={isSubmitDisabled}>
+                        <FontAwesomeIcon icon={faCheck} className="btn-icon" /> Submit
+                    </SolidButton>
+                </div>
             </form>
         </div>
     )

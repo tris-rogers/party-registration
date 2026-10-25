@@ -4,9 +4,11 @@
   --accent-color: #D440B9;
   --dark-color: #121217;
   --light-color: #FFFFFF;
+  --secondary-light-color: #D4D4D4;
   --dark-box-shadow: var(--dark-color) 0px 20px 30px -10px;
   --accent-box-shadow: var(--accent-color) 0px 20px 30px -10px;
   --error-color: #FF0033;
+  --border-radius: 5px;
 }
 
 *,
