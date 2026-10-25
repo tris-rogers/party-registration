@@ -1,0 +1,29 @@
+:root {
+  --primary-bg-color: #00ADE1;
+  --secondary-bg-color: #243C80;
+  --accent-color: #D440B9;
+  --dark-color: #121217;
+  --light-color: #FFFFFF;
+  --dark-box-shadow: var(--dark-color) 0px 20px 30px -10px;
+  --accent-box-shadow: var(--accent-color) 0px 20px 30px -10px;
+  --error-color: #FF0033;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--primary-bg-color);
+  color: var(--light-color);
+}

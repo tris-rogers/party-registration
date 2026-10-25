@@ -1,0 +1,22 @@
+.party-fields-wrapper {
+    padding: 1rem;
+    background-color: var(--light-color);
+    color: var(--dark-color);
+
+    .label-wrapper {
+        margin: 1rem 0;
+        label {
+
+            .label-text {
+                margin-bottom: 10px;
+                font-weight: bold;
+            }
+
+            .error-message {
+                text-align: center;
+                color: var(--error-color);
+                font-weight: bold;
+            }
+        }
+    }
+}

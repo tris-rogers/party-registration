@@ -1,0 +1,15 @@
+.input-field {
+    border: 2px solid var(--dark-color);
+    padding: 10px 15px;
+    border-radius: 5px;
+    width: 100%;
+    outline: none;
+
+    &:focus {
+        box-shadow: var(--accent-color) 0px 5px 15px;
+    }
+
+    &.invalid {
+        border: 2px solid var(--error-color);
+    }
+}

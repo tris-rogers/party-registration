@@ -1,0 +1,5 @@
+.party-registration-form-wrapper {
+    padding: 3rem 1rem;
+    background-color: var(--secondary-bg-color);
+    min-height: 50vh;
+}

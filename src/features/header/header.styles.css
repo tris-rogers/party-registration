@@ -1,0 +1,5 @@
+.header-wrapper {
+    background-color: var(--secondary-bg-color);
+    color: var(--light-color);
+    padding: 1rem;
+}
