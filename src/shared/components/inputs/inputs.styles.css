@@ -4,12 +4,13 @@
     border-radius: var(--border-radius);
     width: 100%;
     outline: none;
-
-    &:focus {
-        box-shadow: var(--accent-color) 0px 5px 15px;
-    }
+    font-size: 1rem;
 
     &.invalid {
         border: 2px solid var(--error-color);
+    }
+
+    &::placeholder, &:placeholder-shown {
+        color: var(--placeholder-color);
     }
 }

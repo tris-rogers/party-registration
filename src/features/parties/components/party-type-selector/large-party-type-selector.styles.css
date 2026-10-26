@@ -66,6 +66,11 @@
                 }
             }
 
+            &:focus {
+                color: var(--accent-color);
+                box-shadow: var(--accent-box-shadow);
+            }
+
             & +.select-party-type-button {
                 margin-top: 3rem;
             }

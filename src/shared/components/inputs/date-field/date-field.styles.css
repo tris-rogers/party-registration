@@ -1,0 +1,7 @@
+.date-field {
+    color: var(--dark-color);
+
+    &.empty-value {
+        color: var(--placeholder-color);
+    }
+}

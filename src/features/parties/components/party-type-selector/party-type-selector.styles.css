@@ -11,7 +11,7 @@
         width: 100%;
         padding: 1rem;
 
-        button {
+        button.party-type-selector {
             all: unset;
             margin: auto;
             width: 50%;
@@ -27,6 +27,12 @@
 
             .btn-icon {
                 margin-right: .5rem;
+            }
+
+            &:focus {
+                box-shadow: none !important;
+                border: none !important;
+                color: var(--secondary-bg-color)
             }
         }
         

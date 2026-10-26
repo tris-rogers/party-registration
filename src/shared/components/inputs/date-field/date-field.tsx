@@ -1,6 +1,7 @@
 import { useState, type ChangeEvent } from "react";
 import type { PartyFormFields } from "../../../../features/parties/types/party";
 import "../inputs.styles.css";
+import "./date-field.styles.css";
 
 interface DateFieldProps {
     name: keyof PartyFormFields;
@@ -19,7 +20,7 @@ export default function DateField({name, value, onChange, isValid, errorMsg}: Da
             <input
                 name={name}
                 onBlur={()=>setCanShowError(true)}
-                className={`input-field text-field ${(hasError) ? "invalid" : ""}`}
+                className={`input-field date-field ${(hasError) ? "invalid" : ""} ${!value ? "empty-value" : ""}`}
                 value={value} 
                 onChange={onChange}
                 type="date"

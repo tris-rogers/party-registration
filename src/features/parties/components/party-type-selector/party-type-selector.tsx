@@ -23,7 +23,7 @@ export default function PartyTypeSelector({partyType, setPartyType}: PartyTypeSe
                         return (
                             <button 
                                 key={id}
-                                className={partyType === id ? 'btn-selected' : ''}
+                                className={`party-type-selector ${partyType === id ? 'btn-selected' : ''}`}
                                 onClick={()=>setPartyType(id)}
                             >
                                 <FontAwesomeIcon icon={icon} className="btn-icon" />

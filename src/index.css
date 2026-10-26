@@ -9,6 +9,9 @@
   --accent-box-shadow: var(--accent-color) 0px 20px 30px -10px;
   --error-color: #FF0033;
   --border-radius: 5px;
+  --placeholder-color: #979797;
+  --body-font: "Lato", sans-serif;
+  --heading-font: "Playfair Display", serif;
 }
 
 *,
@@ -19,7 +22,25 @@
 
 body {
   margin: 0;
-  font-family: system-ui, sans-serif;
+  color: var(--dark-color);
+  font-size: 1rem;
+  font-family: var(--body-font);
+}
+
+h1, h2, h3 {
+  font-family: var(--heading-font);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+
+  &:focus {
+        box-shadow: var(--accent-color) 0px 5px 15px;
+        border: 2px solid var(--dark-color) !important;
+  }
 }
 
 .app {
