@@ -8,13 +8,16 @@ interface TextFieldProps {
     placeholder?: string;
     onChange: (e: ChangeEvent<HTMLInputElement>)=>void;
     isValid: boolean;
+    validationMsg?: string;
     errorMsg?: string;
     maxLength?: number;
+    disabled: boolean;
 }
 
-export default function TextField({name, value, placeholder, onChange, isValid, errorMsg, maxLength}: TextFieldProps) {
+export default function TextField({name, value, placeholder, onChange, isValid, validationMsg, errorMsg, maxLength, disabled}: TextFieldProps) {
     const [canShowError, setCanShowError] = useState(false);
-    const hasError = !isValid && canShowError;
+    const hasError = (!isValid && canShowError) || errorMsg;
+    const msg = errorMsg || validationMsg;
     return (
         <>
             <input
@@ -25,11 +28,12 @@ export default function TextField({name, value, placeholder, onChange, isValid, 
                 maxLength={maxLength}
                 onBlur={()=>setCanShowError(true)}
                 className={`input-field text-field ${(hasError) ? "invalid" : ""}`}
-                type="text" 
+                type="text"
+                disabled={disabled} 
             />
             {
-                hasError && !!errorMsg &&
-                <p className="error-message">{errorMsg}</p>
+                hasError && !!msg &&
+                <p className="error-message">{msg}</p>
             }
         </> 
     )

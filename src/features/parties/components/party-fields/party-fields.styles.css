@@ -5,6 +5,27 @@
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
 
+    .general-error-msg-wrapper {
+        background-color: var(--light-color);
+        padding: 1rem;
+        border-radius: var(--border-radius);
+        border: 2px solid var(--error-color);
+        box-shadow: var(--accent-box-shadow);
+        margin-bottom: 2rem;
+
+        .general-error-msg {
+            color: var(--error-color);
+            font-weight: bold;
+            text-align: center;
+            text-decoration: underline;   
+        }
+
+        .more-info {
+            text-align: center;
+            color: var(--secondary-bg-color)
+        }
+    }
+
     .label-wrapper {
         margin: 1rem 0;
         
@@ -13,6 +34,7 @@
             .label-text {
                 margin-bottom: 10px;
                 font-weight: bold;
+                color: var(--secondary-bg-color);
 
                 .label-required {
                     color: var(--error-color);
@@ -20,7 +42,8 @@
             }
 
             .error-message {
-                text-align: center;
+                /* text-align: center; */
+                margin-bottom: 2rem;
                 color: var(--error-color);
                 font-weight: bold;
             }
