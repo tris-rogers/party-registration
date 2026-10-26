@@ -4,7 +4,7 @@ interface PartySuccessProps {
     successID: string;
 }
 
-export default function PartySuccess({successID = '123'}: PartySuccessProps) {
+export default function PartySuccess({successID}: PartySuccessProps) {
     return (
         <div className="success-message" role="status">
             <h2>Party created successfully</h2>
