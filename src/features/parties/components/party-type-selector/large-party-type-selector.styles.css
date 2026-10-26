@@ -22,14 +22,24 @@
         margin: 0 auto;
 
         .party-type-heading {
-            margin-bottom: 3rem;
+            font-size: 2.5rem;
             color: var(--light-color);
             max-width: 80%;
-            
+            text-decoration: underline;
+            text-decoration-color: var(--secondary-bg-color);
+            margin: 0;
+            white-space: nowrap;
+        }
+        
+        .party-type-text {
+            margin-bottom: 3rem;
+            max-width: 80%;
+            font-size: 1.2rem;
             .accent-word {
                 text-decoration: underline;
                 text-decoration-color: var(--secondary-bg-color);
             }
+
         }
 
         .select-party-type-button {

@@ -30,9 +30,10 @@ export default function LargePartyTypeSelector({hasPartyType, setPartyType}: Lar
             inert={hasPartyType}
         >
             <div className="large-party-type-selector">
-                <h1 className="party-type-heading">
+                <h1 className="party-type-heading">Create party</h1>
+                <p className="party-type-text">
                     What type of <span className="accent-word">Party</span> would you like to register?
-                </h1>
+                </p>
 
                 {
                     PARTY_TYPES.map(p => {
