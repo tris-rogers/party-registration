@@ -46,6 +46,7 @@ export const PARTY_TYPE_FIELDS: PartyFieldInfo[] = [
             name: "Company Registration Number",
             validationMessage: "Please provide a Company Registration Number.",
             partyType: ["Legal Entity"],
+            maxLength: 8,
             placeholder: "Please enter.."
         }
     ];

@@ -32,3 +32,12 @@ export interface PartyTypes {
     icon: IconDefinition;
     fieldsKey: string;
 }
+
+export type FieldError = {
+  field: string;
+  message: string;
+};
+
+export type ApiError = {
+  errors?: FieldError[];
+} | null | undefined;

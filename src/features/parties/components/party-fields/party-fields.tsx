@@ -9,6 +9,7 @@ import { faCheck, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import "./party-fields.styles.css";
 import { usePartyFormValidation } from "../../hooks/use-party-form-validation";
 import type { CreatePartyError, PartyCreate, PartyCreated } from "../../../../generated";
+import { buildPartyPayload, getFieldErrorMessage, isFieldValueValid, normalizePartyFieldValue } from "../../utils/party-form.utils";
 
 interface CreatePartyProps {
     submit: (payload: PartyCreate)=>Promise<PartyCreated>;
@@ -26,7 +27,7 @@ interface PartyFieldsProps {
 
 export default function PartyFields({partyType, partyFields, setPartyFields, createPartyProps}: PartyFieldsProps) {
     const relevantFields = PARTY_TYPE_FIELDS.filter(p => p.partyType.includes(partyType));
-    const {isSubmitDisabled, isFieldValueValid} = usePartyFormValidation(relevantFields, partyFields);
+    const {isSubmitDisabled} = usePartyFormValidation(relevantFields, partyFields);
     const {submit, isLoading, error, clearError} = createPartyProps;
 
     const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>): Promise<void> => {
@@ -34,19 +35,8 @@ export default function PartyFields({partyType, partyFields, setPartyFields, cre
         if (isSubmitDisabled) {
             return;
         }
-        
-        let payload: PartyCreate = {
-            type: partyType,
-            email: "",
-            postcode: ""
-        };
 
-        relevantFields.forEach(r => {
-            payload = {
-                ...payload,
-                [r.id]: partyFields[r.id]
-            }
-        })
+        const payload = buildPartyPayload(partyType, relevantFields, partyFields);
 
         try {
             await submit(payload); 
@@ -60,8 +50,8 @@ export default function PartyFields({partyType, partyFields, setPartyFields, cre
             {
                 error?.errors?.length &&
                 <div className="general-error-msg-wrapper">
-                    <p className="general-error-msg">Please correct the errors below and then re-submit</p>
-                    <p className="more-info">If the error persists please contact support.</p>
+                    <p className="general-error-msg">Please correct the error{!!(error.errors.length > 1) && "s"} below and then re-submit</p>
+                    <p className="more-info">If the error{!!(error.errors.length > 1) && "s"} persists please contact support.</p>
                 </div>
             }
             <form onSubmit={handleSubmit}>
@@ -69,24 +59,9 @@ export default function PartyFields({partyType, partyFields, setPartyFields, cre
                     relevantFields.map(f => {
                         const {id, name, type, maxLength, placeholder} = f;
                         let validationMessage = f.validationMessage;
-                        let value = partyFields[id];
+                        const value = normalizePartyFieldValue(partyFields[id], type);
                         const isValid = isFieldValueValid(value, type);
-                        let fieldError = "";
-
-                        if (type === "email") {
-                            value = value.replaceAll(" ", "");
-                        }
-                        if (type === "postcode") {
-                            value = value.replaceAll(" ", "");
-                            value = value.toUpperCase();
-                        }
-
-                        if (error && error?.errors?.length) {
-                            const foundError = error.errors.find(e => e.field === id);
-                            if (foundError) {
-                                fieldError = foundError.message.replaceAll(id, name);
-                            }
-                        }
+                        const fieldError = getFieldErrorMessage(error, id, name);
                          
                         return (
                             <div key={id} className="label-wrapper">
@@ -108,6 +83,7 @@ export default function PartyFields({partyType, partyFields, setPartyFields, cre
                                                 validationMsg={validationMessage}
                                                 errorMsg={fieldError}
                                                 disabled={isLoading}
+                                                max={new Date().toISOString().split("T")[0]}
                                             />
                                             :
                                             <TextField 

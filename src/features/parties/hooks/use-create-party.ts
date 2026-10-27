@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createParty, type CreatePartyError, type PartyCreate, type PartyCreated } from "../../../generated";
+import { submitParty } from "../services/party-service";
 
 export function useCreateParty() {
   const [isLoading, setIsLoading] = useState(false);
@@ -13,9 +14,8 @@ export function useCreateParty() {
 
     try {
 
-        const response = await createParty({body: payload});
 
-        const partyData = response.data;
+        const partyData = await submitParty(payload);
       
         setSuccessID(partyData.id);
         return partyData;
