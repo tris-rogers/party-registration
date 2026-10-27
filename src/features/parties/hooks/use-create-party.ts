@@ -32,17 +32,17 @@ export function useCreateParty() {
 
   const clearError = (id: string) => {
     setError(prev => {
-        if (prev?.errors.length) {
-            const filteredErrors = prev.errors.filter(e => e.field !== id);
+        if (prev?.errors?.length) {
+          const filteredErrors = prev.errors.filter(e => e.field !== id);
 
-            if (filteredErrors.length === 0) {
-                return null;
-            }   
+          if (filteredErrors.length === 0) {
+            return null;
+          }   
 
-            return {
-                ...prev,
-                errors: filteredErrors
-            }
+          return {
+              ...prev,
+              errors: filteredErrors
+          }
         }
         return prev;
     })
